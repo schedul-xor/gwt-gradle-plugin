@@ -23,7 +23,7 @@ import org.gradle.api.internal.IConventionAware;
 import org.gradle.api.logging.Logger;
 import org.gradle.api.logging.Logging;
 import org.gradle.api.plugins.JavaPlugin;
-import org.gradle.api.plugins.JavaPluginConvention;
+import org.gradle.api.plugins.JavaPluginExtension;
 import org.gradle.api.plugins.WarPlugin;
 import org.gradle.api.plugins.WarPluginConvention;
 import org.gradle.api.tasks.SourceSet;
@@ -85,8 +85,8 @@ public class GwtWarPlugin implements Plugin<Project> {
       task.setGroup(GwtBasePlugin.GWT_TASK_GROUP);
       task.from((Callable<File>) warPluginConvention::getWebAppDir);
       task.dependsOn(
-              (Callable<FileCollection>) () -> project.getConvention()
-                      .getPlugin(JavaPluginConvention.class).getSourceSets().getByName(
+              (Callable<FileCollection>) () -> project.getExtensions()
+                      .getByType(JavaPluginExtension.class).getSourceSets().getByName(
                               SourceSet.MAIN_SOURCE_SET_NAME).getRuntimeClasspath());
       task.classpath(warTaskProvider.map(War::getClasspath));
       ((IConventionAware) task).getConventionMapping()

@@ -17,7 +17,7 @@ plugins {
   id 'eclipse'
 
   // https://plugins.gradle.org/plugin/net.researchgate.release
-  id 'net.researchgate.release' version '3.0.0'
+  id 'net.researchgate.release' version '3.0.2'
 
   // For publishing the plugin to the Gradle Plugin Portal
   id 'java-gradle-plugin'
